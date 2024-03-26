@@ -21,7 +21,12 @@ const router = createRouter({
       path:'/vamos',
       name: 'vamos',
       component: () => import('../components/FirstComponent.vue') 
+    },
+    {
+      path:'/comp',
+      component: () => import('../views/FirstView.vue') 
     }
+
   ]
 })
 
