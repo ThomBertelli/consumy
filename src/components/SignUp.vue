@@ -6,10 +6,14 @@ const email = defineModel('email')
 const password = defineModel('password')
 const confirmPassword = defineModel('confirmPassword')
 const visibility = ref("password")
-
+const confirmVisibility = ref("password")
 
 const togglePasswordVisibility = () => {
     visibility.value = visibility.value === 'password' ? 'text' : 'password';
+}
+
+const toggleConfirmPasswordVisibility = () => {
+    confirmVisibility.value = confirmVisibility.value === 'password' ? 'text' : 'password';
 }
 
 const submitForm = () => {
@@ -39,9 +43,13 @@ const submitForm = () => {
             <div class="mb-4 relative">
                 <label for="confirmPassword" class="block text-gray-700 text-sm font-bold mb-2">Confirmação de
                     Senha</label>
-                <input v-model="confirmPassword" type="password" id="confirmPassword" name="confirmPassword"
+                <input v-model="confirmPassword" :type="confirmVisibility" id="confirmPassword" name="confirmPassword"
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     required>
+                <a @click="toggleConfirmPasswordVisibility" class="absolute inset-y-0 right-0 px-2 py-9 cursor-pointer">
+                    <font-awesome-icon
+                        :icon="confirmVisibility === 'password' ? ['fas', 'eye'] : ['fas', 'eye-slash']" />
+                </a>
             </div>
             <div class="flex items-center justify-between">
                 <button type="submit"
