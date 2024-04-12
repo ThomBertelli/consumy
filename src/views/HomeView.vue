@@ -7,8 +7,7 @@ import BannerComponent from '../components/BannerComponent.vue'
 
 <template>
     <div>
-        <HeaderComponent></HeaderComponent>
-        
+                
         <div class="flex justify-center items-center h-screen">
             <BannerComponent></BannerComponent>
         </div>

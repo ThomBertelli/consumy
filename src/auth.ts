@@ -1,5 +1,6 @@
 import { storage } from './storage'
 
+
 function success(response, onSuccess) {
     response.json().then((json) => {
         storage.store('token', json.token)
@@ -10,7 +11,10 @@ function success(response, onSuccess) {
 function failure(response, onFailure) {
     onFailure()
 }
-function loggedIn() {
+
+
+
+function isLoggedIn() {
     return Boolean(storage.get('token'))
 }
 function signOut(andThen = null) {
@@ -21,7 +25,7 @@ function signOut(andThen = null) {
     }
 }
 function currentUser() {
-    if (!loggedIn()) {
+    if (!isLoggedIn()) {
         return null
     }
     return {
@@ -56,9 +60,10 @@ async function signIn(email, password, onSuccess, onFailure) {
     })
 }
 
+
 export const auth = {
     signIn,
-    loggedIn,
+    isLoggedIn,
     currentUser,
     signOut
 }

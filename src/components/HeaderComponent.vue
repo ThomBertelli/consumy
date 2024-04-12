@@ -1,14 +1,19 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterLink, useRouter} from 'vue-router'
 import { auth } from '../auth'
 import { ref } from 'vue'
 
+const isLoggedIn = ref(auth.isLoggedIn())
 const currentUser = ref(auth.currentUser())
+const router = useRouter()
+
 
 const singOut = function () {
+    router.push('/')
     auth.signOut(() => {
-        currentUser.value = auth.currentUser()
+        isLoggedIn.value = auth.isLoggedIn()
     })
+    
 }
 
 
@@ -33,10 +38,10 @@ const singOut = function () {
                 </div>
 
                 <div class="flex items-center gap-x-7">
-                    <template v-if="currentUser">
+                    <template v-if="isLoggedIn">
                         <h3>Olá, {{ currentUser.email }} !</h3>
                         <nav>
-                            <a @click="singOut">
+                            <a @click="singOut()">
                                 <button type="button"
                                     class="cursor-pointer bg-pink-700 hover:bg-pink-600 px-5 py-3 rounded-lg text-lg hover:scale-105">Sair</button>
                             </a>
