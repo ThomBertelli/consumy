@@ -1,22 +1,6 @@
 <script setup lang="ts">
 import { RouterLink, useRouter} from 'vue-router'
-import { auth } from '../auth'
-import { ref } from 'vue'
 import UserProfile from './UserProfile.vue'
-
-const isLoggedIn = ref(auth.isLoggedIn())
-const currentUser = ref(auth.currentUser())
-const router = useRouter()
-
-
-const singOut = function () {
-    router.push('/')
-    auth.signOut(() => {
-        isLoggedIn.value = auth.isLoggedIn()
-    })
-    
-}
-
 
 </script>
 
