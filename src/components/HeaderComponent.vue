@@ -2,6 +2,7 @@
 import { RouterLink, useRouter} from 'vue-router'
 import { auth } from '../auth'
 import { ref } from 'vue'
+import UserProfile from './UserProfile.vue'
 
 const isLoggedIn = ref(auth.isLoggedIn())
 const currentUser = ref(auth.currentUser())
@@ -38,24 +39,7 @@ const singOut = function () {
                 </div>
 
                 <div class="flex items-center gap-x-7">
-                    <template v-if="isLoggedIn">
-                        <h3>Olá, {{ currentUser.email }} !</h3>
-                        <nav>
-                            <a @click="singOut()">
-                                <button type="button"
-                                    class="cursor-pointer bg-pink-700 hover:bg-pink-600 px-5 py-3 rounded-lg text-lg hover:scale-105">Sair</button>
-                            </a>
-                        </nav>
-                    </template>
-
-                    <template v-else>
-                        <nav>
-                            <RouterLink to="/entrar">
-                                <button type="button"
-                                    class="cursor-pointer bg-pink-700 hover:bg-pink-600 px-5 py-3 rounded-lg text-lg hover:scale-105">Entrar</button>
-                            </RouterLink>
-                        </nav>
-                    </template>
+                    <UserProfile></UserProfile>
 
                 </div>
             </nav>

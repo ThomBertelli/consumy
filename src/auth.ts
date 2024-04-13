@@ -1,14 +1,14 @@
 import { storage } from './storage'
 
 
-function success(response, onSuccess) {
+function success(response: Response, onSuccess:()=> void) {
     response.json().then((json) => {
         storage.store('token', json.token)
         storage.store('email', json.email)
         onSuccess()
     })
 }
-function failure(response, onFailure) {
+function failure(response:Response, onFailure:()=>void) {
     onFailure()
 }
 
@@ -17,7 +17,7 @@ function failure(response, onFailure) {
 function isLoggedIn() {
     return Boolean(storage.get('token'))
 }
-function signOut(andThen = null) {
+function signOut(andThen = () =>{}) {
     storage.remove('token')
     storage.remove('email')
     if (typeof (andThen) == 'function') {
@@ -33,7 +33,7 @@ function currentUser() {
     }
 }
 
-async function signIn(email, password, onSuccess, onFailure) {
+async function signIn(email:String, password:String, onSuccess:()=> void, onFailure:()=> void) {
     console.log("will sing in..")
 
     const body = {
