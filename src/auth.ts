@@ -33,7 +33,7 @@ function currentUser() {
     }
 }
 
-async function signIn(email:String, password:String, onSuccess:()=> void, onFailure:()=> void) {
+async function signIn(email:string, password:String, onSuccess:()=> void, onFailure:()=> void) {
     console.log("will sing in..")
 
     const body = {

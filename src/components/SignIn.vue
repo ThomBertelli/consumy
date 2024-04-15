@@ -18,7 +18,7 @@ const togglePasswordVisibility = () => {
 
 function onSubmit() {
     awaiting.value = true
-    auth.signIn(email.value, password.value, () => {
+    auth.signIn(email.value as string, password.value as string, () => {
         awaiting.value = false
         Swal.fire({
             icon: "success",
