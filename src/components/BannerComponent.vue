@@ -10,7 +10,7 @@ import { RouterLink, RouterView } from 'vue-router'
         <div class="text-center banner-text">
             <h1 class=" mx-auto text-4xl mt-5">Cadastre-se!</h1>
             <RouterLink to="/cadastrar">
-                <button type="button" class=" mt-4 font-bold text-white cursor-pointer bg-pink-700 hover:bg-pink-600 px-5 py-3 rounded-lg text-2xl hover:scale-105">Cadastrar</button>
+                <ButtonPrime type="button" class=" bg-pink-700 hover:bg-pink-600 mt-4 font-bold">Cadastrar</ButtonPrime>
             </RouterLink>
         </div>
     </div>
@@ -27,5 +27,9 @@ import { RouterLink, RouterView } from 'vue-router'
         padding: 100px;
         border-radius: 25px;
     }
+
+    
+    
+
 
 </style>
