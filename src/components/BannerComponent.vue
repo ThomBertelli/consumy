@@ -10,7 +10,7 @@ import { RouterLink, RouterView } from 'vue-router'
         <div class="text-center banner-text">
             <h1 class=" mx-auto text-4xl mt-5">Cadastre-se!</h1>
             <RouterLink to="/cadastrar">
-                <ButtonPrime type="button" class=" bg-pink-700 hover:bg-pink-600 mt-4 font-bold">Cadastrar</ButtonPrime>
+                <ButtonPrime type="button">Cadastrar</ButtonPrime>
             </RouterLink>
         </div>
     </div>

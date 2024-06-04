@@ -35,7 +35,7 @@ const signOut = () => {
                 </div>
                 <div class="flex gap-2">
                     <nav>
-                        <ButtonPrime class="text-pink-700 hover:bg-pink-600"  outlined  @click="signOut">Sair</ButtonPrime>
+                        <ButtonPrime outlined  @click="signOut">Sair</ButtonPrime>
                     </nav>
                 </div>
             </div>
@@ -43,12 +43,12 @@ const signOut = () => {
         <template  v-else>
             <div class="flex gap-3">
                 <nav>
-                    <ButtonPrime outlined class=" ">
+                    <ButtonPrime outlined >
                         <RouterLink :to="{ name: 'signin'}"> Entrar </RouterLink>
                     </ButtonPrime>
                 </nav>
                 <nav>
-                    <ButtonPrime class="bg-pink-700 hover:bg-pink-600">
+                    <ButtonPrime class="text-black">
                         <RouterLink :to="{name: 'signup'}"> Cadastrar </RouterLink>
                     </ButtonPrime>
                 </nav>

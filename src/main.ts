@@ -1,5 +1,5 @@
 import './assets/main.css';
-import 'primevue/resources/themes/lara-light-pink/theme.css';
+import 'primevue/resources/themes/lara-light-amber/theme.css';
 import 'primevue/resources/primevue.min.css';
 import 'primeicons/primeicons.css';
 

@@ -103,7 +103,7 @@ const onSubmit = async () => {
 
             <ToastPrime />
 
-            <ButtonPrime class="bg-pink-700 hover:bg-pink-600" :disabled="!passwordMatch" type="submit" label="Cadastrar" v-show="!awaiting" />
+            <ButtonPrime :disabled="!passwordMatch" type="submit" label="Cadastrar" v-show="!awaiting" />
         </form>
     </div>
 </template>
