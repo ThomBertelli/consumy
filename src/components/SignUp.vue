@@ -46,9 +46,9 @@ const onSubmit = async () => {
 
 <template>
     <div class=" backimage flex flex-col justify-center items-center h-screen">
-        <h1>Faça seu <strong>Cadastro</strong></h1>
-
+        
         <form class=" form-layout flex flex-col gap-8 mt-10  " @submit.prevent="onSubmit">
+            <h1 class="text-white text-center">Faça seu <strong>Cadastro</strong></h1>
 
             <FloatLabel>
                 <InputText class="w-full max-h-11" size="small" v-model="email" type="email" id="email" required />
@@ -103,7 +103,7 @@ const onSubmit = async () => {
 
             <ToastPrime />
 
-            <ButtonPrime :disabled="!passwordMatch" type="submit" label="Cadastrar" v-show="!awaiting" />
+            <ButtonPrime class="text-black" :disabled="!passwordMatch" type="submit" label="Cadastrar" v-show="!awaiting" />
         </form>
     </div>
 </template>

@@ -20,7 +20,7 @@ const signOut = () => {
 
 <template>
 
-    <div class=" bg-black text-white flex justify-between w-full p-5 items-center">
+    <div class=" fixed bg-black text-white flex justify-between w-full p-5 items-center">
         <div class="flex items-center gap-10">
             <RouterLink :to="{name: 'home'}">
                 <img class=" cursor-pointer h-20 w-auto" src="../assets/images/delivery.png" alt="">
