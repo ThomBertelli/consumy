@@ -1,6 +1,6 @@
 <script lang="ts" setup>
     import { ref, onMounted } from 'vue';
-    import StoreCard from './StoreCard.vue';
+    import StoreCard from './StoreCardComponent.vue';
     const stores = ref([]);
 
     onMounted(async () => {
