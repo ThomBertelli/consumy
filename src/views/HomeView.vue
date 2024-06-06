@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import HeaderComponent from '../components/HeaderComponent.vue';
+
 import BannerComponent from '../components/BannerComponent.vue'
 
 
@@ -10,6 +10,7 @@ import BannerComponent from '../components/BannerComponent.vue'
                 
         <div class="flex justify-center items-center h-screen">
             <BannerComponent></BannerComponent>
+            
         </div>
 
        
