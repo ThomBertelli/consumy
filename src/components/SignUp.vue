@@ -100,8 +100,7 @@ const onSubmit = async () => {
                 </small>
             </FloatLabel>
             
-
-            <ToastPrime />
+            <ToastPrime class="bg-white" />
 
             <ButtonPrime class="text-black" :disabled="!passwordMatch" type="submit" label="Cadastrar" v-show="!awaiting" />
         </form>

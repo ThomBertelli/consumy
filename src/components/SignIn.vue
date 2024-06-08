@@ -55,7 +55,7 @@ const onSubmit = async () => {
                 <label for="password">Senha</label>
             </FloatLabel>
 
-            <ToastPrime />
+            <ToastPrime class="bg-white"  />
             <div class="flex items-center justify-center gap-3">
                 <label class="text-amber-500 font-bold" for="remember-me">Lembrar de mim</label>
                 <InputSwitch class="bg-pint-700" v-model="remember" inputId="remember-me" />
