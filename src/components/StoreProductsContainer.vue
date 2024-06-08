@@ -2,8 +2,10 @@
 
 import { ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
+import ProductCard from './ProductCardComponent.vue'
 
 const store = ref();
+const products = ref([]);
 const route = useRoute();
 const apiCredential = import.meta.env.VITE_API_CREDENTIAL
 const apiUrl = import.meta.env.VITE_API_URL;
@@ -21,13 +23,36 @@ const fetchStore = async (id: string) => {
 
         )
         if (!response.ok) {
-            throw new Error('Erro ao buscar lojas')
+            throw new Error('Erro ao buscar loja')
         }
         const data = await response.json()
         store.value = data
 
     } catch (error) {
-        console.error('Erro ao buscar lojas:', error)
+        console.error('Erro ao buscar loja:', error)
+    }
+}
+
+const fetchProducts = async (id: string) => {
+    try {
+        const response = await fetch(`${apiUrl}/stores/${id}/products?locale=pt-BR`, {
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "X-API-KEY": `${apiCredential}`,
+                "Authorization": `Bearer ${localStorage.getItem("token")}`
+            }
+        }
+
+        )
+        if (!response.ok) {
+            throw new Error('Erro ao buscar produtos da loja')
+        }
+        const data = await response.json()
+        products.value = data.result.products
+
+    } catch (error) {
+        console.error('Erro ao buscar produtos da loja:', error)
     }
 }
 
@@ -36,6 +61,7 @@ const fetchStore = async (id: string) => {
 onMounted(() => {
     const storeId = route.params.storeId;
     fetchStore(storeId)
+    fetchProducts(storeId)
 });
 
 
@@ -49,6 +75,7 @@ onMounted(() => {
         </div>
 
         <div class=" pt-40 px-10 items-center w-screen grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-4">
+            <ProductCard v-for="product in products" :key="product.id" :product="product" />
         </div>
 
     </div>
