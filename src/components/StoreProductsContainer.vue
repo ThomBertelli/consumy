@@ -68,13 +68,13 @@ onMounted(() => {
 </script>
 
 <template>
-    <div  v-if="store" class="flex flex-col justify-center items-center h-screen w-screen">
-        <div class="flex items-center gap-5 h-32">
+    <div  v-if="store" class="flex flex-col justify-center items-center w-screen pt-36">
+        <div class="flex items-center gap-5">
             <img :src="store.logo_url" alt="" class="max-w-20 max-h-20">
             <h1>{{ store.name }}</h1>
         </div>
 
-        <div class=" pt-40 px-10 items-center w-screen grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-4">
+        <div class=" mt-10 px-10 items-center w-screen grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
             <ProductCard v-for="product in products" :key="product.id" :product="product" />
         </div>
 
