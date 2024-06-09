@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
+import { useCartStore } from '../stores/cart'
 
 const productQtd = ref(1)
 
@@ -10,23 +11,11 @@ const props = defineProps({
     }
 });
 
-const addItemToCart = (productId, productName, productPrice,productQuantidy) =>{
-    
-    let cart = JSON.parse(localStorage.getItem('shoppingCart')) || [];
+const cartStore = useCartStore();
+const addItemToCart = (id, title, price, quantity) => {
+    cartStore.addToCart({ id, title, price, quantity });
+};
 
-    
-    let itemIndex = cart.findIndex(item => item.productId === productId);
-    
-    if (itemIndex > -1) {
-        
-        cart[itemIndex].productQuantidy += productQuantidy;
-    } else {
-        
-        cart.push({productId, productName, productPrice,productQuantidy });
-    }
-
-    localStorage.setItem('shoppingCart', JSON.stringify(cart));
-}
 </script>
 
 <template>
@@ -43,8 +32,7 @@ const addItemToCart = (productId, productName, productPrice,productQuantidy) =>{
             <p>{{ product.price }}</p>
         </div>
         <div class="card flex gap-3 p-fluid  ">
-            <InputNumber  v-model="productQtd" buttonLayout="horizontal" showButtons
-                :min="1" :max="99">
+            <InputNumber v-model="productQtd" buttonLayout="horizontal" showButtons :min="1" :max="99">
                 <template #incrementbuttonicon>
                     <span class="pi pi-plus text-black" />
                 </template>
@@ -53,7 +41,8 @@ const addItemToCart = (productId, productName, productPrice,productQuantidy) =>{
                 </template>
 
             </InputNumber>
-            <ButtonPrime @click="addItemToCart(product.id, product.title,product.price,productQtd)" class="text-black justify-center">Adicionar</ButtonPrime>
+            <ButtonPrime @click="addItemToCart(product.id, product.title, product.price, productQtd)"
+                class="text-black justify-center">Adicionar</ButtonPrime>
         </div>
 
     </div>

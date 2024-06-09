@@ -2,14 +2,19 @@
 import { RouterLink } from 'vue-router'
 import { storeToRefs } from 'pinia';
 import { useAuthStore } from '@/stores/authStore';
-import { onMounted } from 'vue';
+import { onMounted,defineEmits } from 'vue';
 
 const authStore = useAuthStore();
 const { isLoggedIn, currentUser } = storeToRefs(authStore);
+const emit = defineEmits(['toggle-sidebar']);
 
 onMounted(()=>{
     authStore.checkAuth()
 })
+
+const toggleSidebar = () => {
+  emit('toggle-sidebar');
+};
 
 
 const signOut = () => {
@@ -38,7 +43,7 @@ const signOut = () => {
                         <ButtonPrime outlined  @click="signOut">Sair</ButtonPrime>
                     </nav>
                     <nav>
-                        <ButtonPrime>
+                        <ButtonPrime @click="toggleSidebar" >
                             <i class="pi pi-shopping-bag text-black text-2xl px-1"></i>
                         </ButtonPrime>
                     </nav>
