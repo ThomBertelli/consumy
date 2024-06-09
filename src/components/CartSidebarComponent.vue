@@ -2,6 +2,7 @@
 import Sidebar from 'primevue/sidebar';
 import { ref, watch, computed } from "vue";
 import { useCartStore } from '../stores/cart'
+import { RouterLink } from 'vue-router'
 
 const props = defineProps({
     visible: Boolean
@@ -27,7 +28,9 @@ const cartItems = computed(() => cartStore.cart);
             <p>{{ item.quantity }} x {{ item.title }}  {{ item.price }} un </p>  
         </div>
         <h3>Total=R$ {{ total }} </h3>
-        <ButtonPrime class="text-black font-bold">Ckeckout</ButtonPrime>
+        <ButtonPrime  class="text-black font-bold">
+            <RouterLink to="/checkout">Ckeckout</RouterLink>
+        </ButtonPrime>
     </Sidebar>
 </template>
 

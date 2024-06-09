@@ -22,6 +22,7 @@ import Tooltip from 'primevue/tooltip';
 import Dialog from 'primevue/dialog';
 import ConfirmDialog from 'primevue/confirmdialog';
 import ConfirmationService from 'primevue/confirmationservice';
+import { useCartStore } from './stores/cart'
 
 const app = createApp(App);
 const pinia = createPinia();
@@ -46,3 +47,6 @@ app.component('ConfirmDialog',ConfirmDialog)
 app.directive('tooltip', Tooltip);
 
 app.mount('#app');
+
+const cartStore = useCartStore();
+cartStore.loadCartFromLocalStorage();

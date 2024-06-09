@@ -29,6 +29,11 @@ const router = createRouter({
       path:'/store/:storeId',
       name:'store-products',
       component: () => import('../components/StoreProductsContainer.vue')
+    },
+    {
+      path:'/checkout',
+      name:'checkout',
+      component: () => import('../components/CheckoutComponent.vue')
     }
 
   ]

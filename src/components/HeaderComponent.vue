@@ -19,6 +19,7 @@ const toggleSidebar = () => {
 
 const signOut = () => {
     authStore.signOut();
+    localStorage.clear()
 };
 
 </script>
