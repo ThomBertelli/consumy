@@ -37,6 +37,11 @@ const signOut = () => {
                     <nav>
                         <ButtonPrime outlined  @click="signOut">Sair</ButtonPrime>
                     </nav>
+                    <nav>
+                        <ButtonPrime>
+                            <i class="pi pi-shopping-bag text-black text-2xl px-1"></i>
+                        </ButtonPrime>
+                    </nav>
                 </div>
             </div>
         </template>

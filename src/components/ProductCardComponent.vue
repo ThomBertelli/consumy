@@ -19,7 +19,7 @@ const addItemToCart = (productId, productName, productPrice,productQuantidy) =>{
     
     if (itemIndex > -1) {
         
-        cart[itemIndex].quantity += quantity;
+        cart[itemIndex].productQuantidy += productQuantidy;
     } else {
         
         cart.push({productId, productName, productPrice,productQuantidy });
@@ -53,7 +53,7 @@ const addItemToCart = (productId, productName, productPrice,productQuantidy) =>{
                 </template>
 
             </InputNumber>
-            <ButtonPrime @click="addItemToCart(product.id, product.name,product.price,productQtd)" class="text-black justify-center">Adicionar</ButtonPrime>
+            <ButtonPrime @click="addItemToCart(product.id, product.title,product.price,productQtd)" class="text-black justify-center">Adicionar</ButtonPrime>
         </div>
 
     </div>
