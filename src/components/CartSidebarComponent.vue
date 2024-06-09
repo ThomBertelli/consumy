@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import Sidebar from 'primevue/sidebar';
-import { ref, onMounted, watch, computed } from "vue";
+import { ref, watch, computed } from "vue";
 import { useCartStore } from '../stores/cart'
 
 const props = defineProps({
@@ -16,30 +16,13 @@ watch(() => props.visible, (newVal) => {
 });
 
 const cartStore = useCartStore();
-
-
-
-const cartItems = ref(cartStore.cart);
-console.log(cartItems.value)
-
-watch(cartStore.cart, (newCart) => {
-    cartItems.value = newCart;
-    console.log(cartItems.value)
-    
-});
-
-const total = computed(() => {
-    return cartItems.value.reduce((acc, item) => acc + parseFloat(item.price.replace("R$","").replace(",",'.')) * item.quantity, 0);
-});
-
-
-
+const total = computed(() => cartStore.cartTotal);
+const cartItems = computed(() => cartStore.cart);
 
 </script>
 
 <template>
     <Sidebar class="p-sidebar" position="right" v-model:visible="visible" header="Sacola">
-
         <div v-for="item in cartItems" :key="item.id">
             <p>{{ item.quantity }} x {{ item.title }}  {{ item.price }} un </p>  
         </div>

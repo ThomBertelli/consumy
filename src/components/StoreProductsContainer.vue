@@ -3,12 +3,15 @@
 import { ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 import ProductCard from './ProductCardComponent.vue'
+import { useCartStore } from '../stores/cart';
 
 const store = ref();
 const products = ref([]);
 const route = useRoute();
 const apiCredential = import.meta.env.VITE_API_CREDENTIAL
 const apiUrl = import.meta.env.VITE_API_URL;
+const cartStore = useCartStore();
+
 
 const fetchStore = async (id: string) => {
     try {
@@ -56,13 +59,17 @@ const fetchProducts = async (id: string) => {
     }
 }
 
-
+const setStoreInfo = (id) => {
+  cartStore.setStoreInfo(id);
+};
 
 onMounted(() => {
     const storeId = route.params.storeId;
     fetchStore(storeId)
     fetchProducts(storeId)
+    setStoreInfo(storeId)   
 });
+
 
 
 </script>
