@@ -2,14 +2,15 @@
 import { ref, reactive, watch } from "vue";
 import { useCartStore } from '../stores/cart'
 import InputMask from 'primevue/inputmask';
-import { fetchEventSource } from '@microsoft/fetch-event-source';
+import { useRouter } from 'vue-router';
+
 
 const apiCredential = import.meta.env.VITE_API_CREDENTIAL
 const apiUrl = import.meta.env.VITE_API_URL;
 const cartStore = useCartStore();
 const orderId = ref()
 const storeId = cartStore.storeInfo.storeId;
-const orderStatus = ref()
+const router = useRouter();
 
 
 const cardDataForm = reactive({
@@ -96,6 +97,10 @@ const callCreateItems = async () => {
     }
 };
 
+const endOrder = ()=>{
+    localStorage.setItem('cart',"")
+    router.push({ name: 'order', params: { orderId: `${orderId.value}` } });
+}
 
 const pay = async (id) => {
 
@@ -120,12 +125,11 @@ const pay = async (id) => {
         });
         if (response.status === 200) {
             const json = await response.json()
-            console.log(json)
-            openSSE()
-
+            endOrder()
         } else {
             const errorData = await response.json();
             console.log(errorData)
+            endOrder()
         }
     } catch (error: any) {
         console.error(error)
@@ -134,39 +138,6 @@ const pay = async (id) => {
 
 }
 
-
-
-
-const openSSE = async () => {
-    let id = orderId.value
-    let url = `${apiUrl}/orders/${id}/watch`;
-
-
-    fetchEventSource(url, {
-        method: 'GET',
-        headers: {
-            'Accept': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem('token')}`,
-            'X-API-KEY': apiCredential,
-        },
-        async onopen(response) {
-            if (response.ok) {
-                console.log('connected!');
-                return; // everything's good
-            }
-        },
-        onmessage(msg) {
-            if (msg.event === 'order-changed') {
-                let data = JSON.parse(msg.data)
-                console.log(data.order)
-                orderStatus.value = 'accept'
-            } else {
-                orderStatus.value = 'rejected'
-            }
-        }
-    });
-
-}
 
 
 </script>
@@ -210,7 +181,6 @@ const openSSE = async () => {
             <ButtonPrime type="submit" class=" flex text-black font-bold justify-center">Pagar</ButtonPrime>
         </form>
 
-        <i @click="openSSE()">go</i>
     </div>
 </template>
 

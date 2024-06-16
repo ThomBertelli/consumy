@@ -34,6 +34,12 @@ const router = createRouter({
       path:'/checkout',
       name:'checkout',
       component: () => import('../components/CheckoutComponent.vue')
+    },
+    {
+      path:'/order/:orderId',
+      name:'order',
+      component: () => import('../components/OrderStatusComponent.vue'),
+      props:true
     }
 
   ]
