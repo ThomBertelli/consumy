@@ -2,7 +2,7 @@
 import { RouterLink } from 'vue-router'
 import { storeToRefs } from 'pinia';
 import { useAuthStore } from '@/stores/authStore';
-import { onMounted,defineEmits } from 'vue';
+import { onMounted} from 'vue';
 
 const authStore = useAuthStore();
 const { isLoggedIn, currentUser } = storeToRefs(authStore);
