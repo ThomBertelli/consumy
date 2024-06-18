@@ -32,6 +32,15 @@ const signOut = () => {
                 <img class=" cursor-pointer h-20 w-auto" src="../assets/images/delivery.png" alt="">
             </RouterLink>
             <h1 class="font-bold">Delivery - Consumidor</h1>
+            <RouterLink :to="{name: 'stores'}">
+                <p>Lojas</p>
+            </RouterLink>
+            <a :to="{name: 'abaout'}">
+                <p>Sobre</p>
+            </a>
+            <a :to="{name: 'abaout'}">
+                <p>Contato</p>
+            </a>
         </div>
         <div class="flex flex-col ">
         <template v-if="isLoggedIn">
