@@ -36,6 +36,10 @@ export const useAuthStore = defineStore('auth', () => {
         onSuccess();
     };
 
+    const successSigup = (json:any, onSuccess:() => void) =>{
+        onSuccess()
+    }
+
     const failure = (onFailure: () => void) => {
         onFailure();
     };
@@ -60,7 +64,7 @@ export const useAuthStore = defineStore('auth', () => {
             });
             if (response.ok) {
                 const json = await response.json();
-                success(json, onSuccess);
+                success (json, onSuccess);
             } else {
                 failure(onFailure);
             }
@@ -92,7 +96,7 @@ export const useAuthStore = defineStore('auth', () => {
             });
             if (response.ok) {
                 const json = await response.json();
-                success(json, onSuccess);
+                successSigup(json,onSuccess);
             } else {
                 failure(onFailure);
             }
