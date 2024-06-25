@@ -5,6 +5,7 @@ import { useRoute } from 'vue-router';
 import ProductCard from './ProductCardComponent.vue'
 import { useCartStore } from '../stores/cart';
 
+
 const store = ref();
 const products = ref([]);
 const route = useRoute();
@@ -14,6 +15,7 @@ const cartStore = useCartStore();
 const totalPages = ref()
 const pageNumber = ref(1)
 const storeId = route.params.storeId;
+const orderBy = ref('title');
 
 const fetchStore = async () => {
     try {
@@ -41,7 +43,7 @@ const fetchStore = async () => {
 const fetchProducts = async () => {
 
     try {
-        const response = await fetch(`${apiUrl}/stores/${storeId}/products?page=${pageNumber.value}&locale=pt-BR`, {
+        const response = await fetch(`${apiUrl}/stores/${storeId}/products?page=${pageNumber.value}&locale=pt-BR&order=${orderBy.value}`, {
             headers: {
                 'Accept': 'application/json',
                 "Authorization": `Bearer ${localStorage.getItem("token")}`,
@@ -57,12 +59,7 @@ const fetchProducts = async () => {
         }
         const data = await response.json()
         totalPages.value = data.result.pagination.pages
-        for(let product of data.result.products){
-            console.log(product)
-            if (!products.value.includes(product)){
-                products.value.push(product)
-            }
-        }
+        products.value = [...products.value, ...data.result.products]
 
     } catch (error) {
         console.error('Erro ao buscar produtos:', error)
@@ -72,6 +69,13 @@ const fetchProducts = async () => {
 const setStoreInfo = () => {
   cartStore.setStoreInfo(storeId);
 };
+
+const reloadProducts = () =>{
+    products.value = []
+    pageNumber.value = 1
+    fetchProducts()
+}
+
 
 onMounted(() => {
     
@@ -89,9 +93,17 @@ const showMore = () =>{
 
 <template>
     <div  v-if="store" class="flex flex-col justify-center items-center w-screen pt-36">
+        
         <div class="flex items-center gap-5">
             <img :src="store.logo_url" alt="" class="max-w-20 max-h-20">
             <h1>{{ store.name }}</h1>
+            <div>
+                <small>Ordernar por </small>
+                <select v-model="orderBy" @change="reloadProducts()" name="order-by" id="order-by">
+                    <option value="title">Nome</option>
+                    <option value="price">Preço</option>
+                </select>
+            </div>
         </div>
 
         <div class=" mt-10 px-10 items-center w-screen grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
