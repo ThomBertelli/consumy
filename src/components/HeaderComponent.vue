@@ -35,19 +35,19 @@ const signOut = () => {
             <RouterLink :to="{name: 'stores'}">
                 <p>Lojas</p>
             </RouterLink>
-            <a :to="{name: 'abaout'}">
+            <a :to="{name: 'about'}">
                 <p>Sobre</p>
             </a>
-            <a :to="{name: 'abaout'}">
+            <a :to="{name: 'contact'}">
                 <p>Contato</p>
             </a>
         </div>
         <div class="flex flex-col ">
         <template v-if="isLoggedIn">
             <div class="flex flex-col items-center gap-2">
-                <div>
+                <RouterLink :to="{name: 'user'}">
                     <h3>Olá, {{ currentUser && currentUser.email }}</h3>     
-                </div>
+                </RouterLink>
                 <div class="flex gap-2">
                     <nav>
                         <ButtonPrime outlined  @click="signOut">Sair</ButtonPrime>

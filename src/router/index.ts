@@ -40,6 +40,11 @@ const router = createRouter({
       name:'order',
       component: () => import('../components/OrderStatusComponent.vue'),
       props:true
+    },
+    {
+      path:'/user',
+      name:'user',
+      component: () => import('../components/UserProfileEdit.vue'),
     }
 
   ]
